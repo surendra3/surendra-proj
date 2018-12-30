@@ -1,0 +1,21 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "apiType":{
+            "value": "MongoDB"
+        },
+        "dbName": {
+            "value": "testactcosmos123"
+        },
+        "location": {
+            "value": "West US 2"
+        },
+        "writelocation": {
+            "value": "West US 2"
+        },
+        "readlocation": {
+            "value": "West US 2"
+        }
+    }
+}
