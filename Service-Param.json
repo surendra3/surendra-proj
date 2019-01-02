@@ -1,12 +1,15 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-      "serviceBusNamespaceName": {
-        "value": "GEN-UNIQUE"
-      },
-      "serviceBusQueueName": {
-        "value": "GEN-UNIQUE"
-      }
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "serviceBusNamespaceName": {
+      "value": "dev-dm-wus2-servicebus-updates1"
+    },
+    "serviceBusQueueName": {
+      "value": "dev-dm-wus2-servicebus-updates1"
+    },
+    "location": {
+      "value": "West US 2"
     }
   }
+}
