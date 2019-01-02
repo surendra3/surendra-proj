@@ -1,0 +1,93 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "webname": {
+      "type": "string",
+      "metadata": {
+        "description": ""
+      },
+      "defaultValue": ""
+    },
+    "hostingPlanName": {
+      "type": "string",
+      "metadata": {
+        "description": ""
+      },
+      "defaultValue": ""
+    },
+    "hostingEnvironment": {
+      "type": "string",
+      "metadata": {
+        "description": ""
+      },
+      "defaultValue": ""
+    },
+    "location": {
+      "type": "string",
+      "metadata": {
+        "description": ""
+      },
+      "defaultValue": ""
+    },
+    "workerSize": {
+      "type": "string",
+      "metadata": {
+        "description": ""
+      },
+      "defaultValue": ""
+    },
+    "sku": {
+      "type": "string",
+      "metadata": {
+        "description": ""
+      },
+      "defaultValue": ""
+    },
+    "skuCode": {
+      "type": "string",
+      "metadata": {
+        "description": ""
+      },
+      "defaultValue": ""
+    }
+  },
+  "variables": {
+  },
+  "resources": [
+    {
+      "apiVersion": "2016-09-01",
+      "name": "[parameters('hostingPlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "location": "[parameters('location')]",
+      "properties": {
+        "name": "[parameters('hostingPlanName')]",
+        "workerSizeId": "[parameters('workerSize')]",
+        "numberOfWorkers": "1",
+        "hostingEnvironment": "[parameters('hostingEnvironment')]"
+      },
+      "sku": {
+        "Tier": "[parameters('sku')]",
+        "Name": "[parameters('skuCode')]"
+      }
+    },
+    {
+      "name": "[parameters('webname')]",
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2016-08-01",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+      ],
+      "properties": {
+        "siteConfig": {
+          "appSettings": [
+
+          ]
+        },
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]",
+        "hostingEnvironment": "[parameters('hostingEnvironment')]"
+      }
+    }
+  ]
+}
