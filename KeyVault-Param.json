@@ -1,40 +1,43 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "keyVaultName": {
-            "value": "keyVault999"
-        },
-        "accessPolicies": {
-            "value": [
-            {
-                "tenantId": "bb52e50e-6964-4634-87dc-1f77353fad64",
-                "objectId": "ae486705-c4b1-4989-95ee-34896f17d977",
-                "permissions": {
-                "keys": [ "all" ],
-                "secrets": [ "all" ]
-            }
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "keyVaultName": {
+      "value": "keyVault99901"
+    },
+    "accessPolicies": {
+      "value": [
+        {
+          "tenantId": "bd3f9f15-a104-4529-af4e-1bec1a73b392",
+          "objectId": "d7d0dd85-9b98-4695-bfdf-2cdad3eec1ab",
+          "permissions": {
+            "keys": [ "all" ],
+            "secrets": [ "all" ]
           }
-        ],
-        "keysPermissions":{
-            "value":"list"
-        },
-        "secretsPermissions":{
-            "value":"list"
-        },
-        "skuName":{
-            "value":"Standard"
-        },
-        "location":{
-            "value":"East US"
-        },
-        "enableVaultForDeployment":{
-            "value":false
-        },
-        "enableVaultForDiskEncryption":{
-            "value":false
-        },
-        "enabledForTemplateDeployment":{
-            "value":false
         }
-      }
+      ]
+    },
+    "keysPermissions": {
+      "value": [ "list" ]
+    },
+    "secretsPermissions": {
+      "value": [ "list" ]    
+
+    },
+    "skuName": {
+      "value": "Standard"
+    },
+    "location": {
+      "value": "West US 2"
+    },
+    "enableVaultForDeployment": {
+      "value": false
+    },
+    "enableVaultForDiskEncryption": {
+      "value": false
+    },
+    "enabledForTemplateDeployment": {
+      "value": false
+    }
+  }
+}
