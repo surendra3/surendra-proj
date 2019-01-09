@@ -1,0 +1,24 @@
+{  
+    "$schema":"https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion":"1.0.0.0",
+    "parameters":{
+        "apiAppName": {
+            "value": "testApiApp"
+        },
+        "apiAppSecret": {
+            "value": "81653e4d-8c13-4168-8e87-b40696653d05"
+        },
+        "svcPlanName":{
+            "value": "apiappservice"
+        },
+        "sku":{
+            "value": "Basic"
+        },
+        "svcPlanSize":{
+            "value": "2"
+        },
+        "gatewayName":{
+            "value": "TestGateway"
+        }
+    }
+}
