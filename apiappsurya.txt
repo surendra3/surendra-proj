@@ -1,0 +1,105 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "apiAppName": {
+        "value": "dev-dm-wus2-apiapp-backendservices01"
+      },
+      "hostingPlanName": {
+        "value": "dev-dm-wus2-webapp01"
+      },
+      "location": {
+        "value": "West US 2"
+      },
+      "hostingEnvironment": {
+        "value": ""
+      },
+      "serverFarmResourceGroup": {
+        "value": "AzureDevops"
+      },
+      "subscriptionId": {
+        "value": "acec0cbf-edda-43ec-b438-f31ab9771f45"
+      },
+    "sku":{
+        "value": "Basic"
+    },
+    "svcPlanSize":{
+        "value": "2"
+    }
+      
+    }
+  }
+  
+============================================================================
+
+{
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "apiAppName": {
+        "type": "string"
+      },
+      "hostingPlanName": {
+        "type": "string"
+      },
+      "location": {
+        "type": "string"
+      },
+      "hostingEnvironment": {
+        "type": "string"
+      },
+      "serverFarmResourceGroup": {
+        "type": "string"
+      },
+      "subscriptionId": {
+        "type": "string"
+      },
+        "sku":{
+        "type": "string",
+        "metadata": {
+            "description":""
+        }
+    },
+    "svcPlanSize":{
+        "type": "string",
+        "metadata": {
+            "description":""
+        }
+    }
+    },
+    "resources": [
+        {
+            "apiVersion": "2014-06-01",
+            "name": "[parameters('hostingPlanName')]",
+            "type": "Microsoft.Web/serverfarms",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "AppServicePlan"
+            },
+            "properties": {
+                "name": "[parameters('hostingPlanName')]",
+                "sku": "[parameters('sku')]",
+                "workerSize": "[parameters('svcPlanSize')]",
+                "numberOfWorkers": 1
+            }
+        },
+      {
+        "apiVersion": "2016-03-01",
+        "name": "[parameters('apiAppName')]",
+        "type": "Microsoft.Web/sites",
+        "dependsOn": [
+            "[concat('Microsoft.Web/serverfarms/',parameters('hostingPlanName'))]"
+        ],
+        "properties": {
+          "name": "[parameters('apiAppName')]",
+          "siteConfig": {
+            "appSettings": []
+          },
+          "serverFarmId": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+          "hostingEnvironment": "[parameters('hostingEnvironment')]"
+        },
+        "location": "[parameters('location')]",
+        "kind": "api"
+      }
+    ]
+}
